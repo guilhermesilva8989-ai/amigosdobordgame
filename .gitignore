@@ -1,1 +1,24 @@
 node_modules
+
+# Builds
+**/dist/
+**/build/
+*.tsbuildinfo
+
+# Variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editores e sistema operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Cobertura de testes
+coverage/
