@@ -347,3 +347,23 @@
     grid-template-columns: 1fr;
   }
 }
+
+.admin-action-button {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  background: #c9321e;
+}
+
+.admin-action-button.disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}

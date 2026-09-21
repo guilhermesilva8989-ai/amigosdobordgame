@@ -1,0 +1,230 @@
+.admin-header-back {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  color: #fff7e8;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.participants-admin-content {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.participants-admin-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.participants-admin-heading > div > span {
+  color: #d23a20;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.participants-admin-heading h1 {
+  margin: 7px 0;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+.participants-admin-heading p {
+  margin: 0;
+  color: #806c60;
+}
+
+.participants-admin-heading > strong {
+  padding: 10px 15px;
+  color: #78462f;
+  border: 1px solid rgba(111, 66, 37, 0.16);
+  border-radius: 10px;
+  background: #fffaf3;
+}
+
+.participant-create-form {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 16px;
+  margin: 32px 0 20px;
+  padding: 22px;
+  border: 1px solid rgba(111, 66, 37, 0.18);
+  border-radius: 16px;
+  background: #fffaf3;
+}
+
+.participant-form-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  color: #d33b21;
+  border-radius: 12px;
+  background: #fff0e5;
+  place-items: center;
+}
+
+.participant-create-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.participant-create-form input {
+  min-height: 48px;
+  padding: 0 14px;
+  font: inherit;
+  border: 1px solid rgba(111, 66, 37, 0.22);
+  border-radius: 10px;
+  outline: 0;
+}
+
+.participant-create-form input:focus {
+  border-color: #d84922;
+  box-shadow: 0 0 0 3px rgba(216, 73, 34, 0.12);
+}
+
+.participant-create-form button,
+.participant-toggle {
+  min-height: 46px;
+  padding: 0 18px;
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  background: #cf351f;
+}
+
+.admin-message {
+  margin: 14px 0;
+  padding: 12px 15px;
+  border-radius: 10px;
+}
+
+.admin-message.error {
+  color: #982719;
+  background: #ffe9e2;
+}
+
+.admin-message.success {
+  color: #267140;
+  background: #e8f7ed;
+}
+
+.participants-admin-list {
+  overflow: hidden;
+  border: 1px solid rgba(111, 66, 37, 0.18);
+  border-radius: 16px;
+  background: #fffaf3;
+}
+
+.participants-list-header,
+.participant-admin-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.8fr 0.7fr 0.7fr;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 20px;
+}
+
+.participants-list-header {
+  color: #806c60;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: #f6e8d8;
+}
+
+.participant-admin-row {
+  border-top: 1px solid rgba(111, 66, 37, 0.12);
+}
+
+.participant-admin-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.participant-admin-name > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  color: white;
+  border-radius: 50%;
+  background: #d84922;
+  place-items: center;
+}
+
+.participant-admin-row code {
+  color: #7b4b35;
+}
+
+.admin-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.admin-status.active {
+  color: #278347;
+}
+
+.admin-status.inactive {
+  color: #a33a2a;
+}
+
+.participant-toggle {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.participant-toggle:disabled,
+.participant-create-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.participants-loading {
+  margin: 0;
+  padding: 32px;
+  color: #806c60;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .participants-admin-heading,
+  .participant-create-form {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .participant-form-icon {
+    display: none;
+  }
+
+  .participants-list-header {
+    display: none;
+  }
+
+  .participant-admin-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .participant-admin-name {
+    grid-column: 1 / -1;
+  }
+}

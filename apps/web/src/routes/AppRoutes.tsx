@@ -6,6 +6,7 @@ import {
 import App from '../App';
 import { AdminDashboardPage } from '../pages/AdminDashboardPage';
 import { AdminLoginPage } from '../pages/AdminLoginPage';
+import { AdminParticipantsPage } from '../pages/AdminParticipantsPage';
 
 export function AppRoutes() {
   return (
@@ -18,6 +19,10 @@ export function AppRoutes() {
       <Route
         path="/admin"
         element={<AdminDashboardPage />}
+      />
+      <Route
+        path="/admin/participants"
+        element={<AdminParticipantsPage />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

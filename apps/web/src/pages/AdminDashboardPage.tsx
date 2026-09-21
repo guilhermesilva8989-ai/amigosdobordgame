@@ -77,21 +77,30 @@ export function AdminDashboardPage() {
             <Users size={25} />
             <h2>Participantes</h2>
             <p>Cadastre, consulte e desative participantes.</p>
-            <button type="button">Gerenciar participantes</button>
+            <Link
+              className="admin-action-button"
+              to="/admin/participants"
+            >
+              Gerenciar participantes
+            </Link>
           </article>
 
           <article>
             <ReceiptText size={25} />
             <h2>Movimentações</h2>
             <p>Registre contribuições e despesas do grupo.</p>
-            <button type="button">Nova movimentação</button>
+            <span className="admin-action-button disabled">
+              Nova movimentação
+            </span>
           </article>
 
           <article>
             <WalletCards size={25} />
             <h2>Meta financeira</h2>
             <p>Defina o objetivo atual do fundo coletivo.</p>
-            <button type="button">Configurar meta</button>
+            <span className="admin-action-button disabled">
+              Configurar meta
+            </span>
           </article>
         </div>
       </section>
