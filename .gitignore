@@ -22,3 +22,5 @@ Thumbs.db
 
 # Cobertura de testes
 coverage/
+**/.env
+apps/api/src/generated/

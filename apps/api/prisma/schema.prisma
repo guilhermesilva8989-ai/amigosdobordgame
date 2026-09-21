@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TransactionType {
+  ENTRY
+  EXPENSE
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  LOGIN
+}
+
+model Admin {
+  id             String          @id @default(uuid()) @db.Uuid
+  name           String          @db.VarChar(100)
+  email          String          @unique @db.VarChar(255)
+  passwordHash   String          @map("password_hash") @db.VarChar(255)
+  isActive       Boolean         @default(true) @map("is_active")
+  lastLoginAt    DateTime?       @map("last_login_at") @db.Timestamptz(3)
+  transactions   Transaction[]
+  financialGoals FinancialGoal[]
+  auditLogs      AuditLog[]
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime        @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("admins")
+}
+
+model Participant {
+  id           String        @id @default(uuid()) @db.Uuid
+  publicCode   String        @unique @map("public_code") @db.VarChar(20)
+  name         String        @db.VarChar(120)
+  isActive     Boolean       @default(true) @map("is_active")
+  joinedAt     DateTime      @default(now()) @map("joined_at") @db.Timestamptz(3)
+  transactions Transaction[]
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("participants")
+}
+
+model Transaction {
+  id             String          @id @default(uuid()) @db.Uuid
+  type           TransactionType
+  amount         Decimal         @db.Decimal(12, 2)
+  description    String          @db.VarChar(255)
+  referenceMonth DateTime?       @map("reference_month") @db.Date
+  occurredAt     DateTime        @default(now()) @map("occurred_at") @db.Timestamptz(3)
+  participantId  String?         @map("participant_id") @db.Uuid
+  createdById    String          @map("created_by_id") @db.Uuid
+  participant    Participant?    @relation(fields: [participantId], references: [id], onDelete: SetNull)
+  createdBy      Admin           @relation(fields: [createdById], references: [id], onDelete: Restrict)
+  createdAt      DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime        @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@index([type])
+  @@index([occurredAt])
+  @@index([participantId])
+  @@index([referenceMonth])
+  @@map("transactions")
+}
+
+model FinancialGoal {
+  id           String    @id @default(uuid()) @db.Uuid
+  title        String    @db.VarChar(150)
+  targetAmount Decimal   @map("target_amount") @db.Decimal(12, 2)
+  deadline     DateTime? @db.Date
+  isActive     Boolean   @default(true) @map("is_active")
+  createdById  String    @map("created_by_id") @db.Uuid
+  createdBy    Admin     @relation(fields: [createdById], references: [id], onDelete: Restrict)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@index([isActive])
+  @@map("financial_goals")
+}
+
+model AuditLog {
+  id          String      @id @default(uuid()) @db.Uuid
+  action      AuditAction
+  entity      String      @db.VarChar(80)
+  entityId    String?     @map("entity_id") @db.VarChar(80)
+  details     Json?
+  createdById String      @map("created_by_id") @db.Uuid
+  createdBy   Admin       @relation(fields: [createdById], references: [id], onDelete: Restrict)
+  createdAt   DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
