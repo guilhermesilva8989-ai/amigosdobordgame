@@ -5,6 +5,7 @@ import { AppService } from './app.service.js';
 import { AuthModule } from './auth/auth.module.js';
 import { DatabaseModule } from './database/database.module.js';
 import { ParticipantsModule } from './participants/participants.module.js';
+import { TransactionsModule } from './transactions/transactions.module.js';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ParticipantsModule } from './participants/participants.module.js';
     DatabaseModule,
     AuthModule,
     ParticipantsModule,
+    TransactionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
