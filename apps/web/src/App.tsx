@@ -47,7 +47,7 @@ function App() {
           <a href="#participantes">Participantes</a>
         </nav>
 
-        <a className="admin-link" href="#administracao">
+        <a className="admin-link" href="/admin/login">
           <LockKeyhole size={16} />
           Área administrativa
         </a>

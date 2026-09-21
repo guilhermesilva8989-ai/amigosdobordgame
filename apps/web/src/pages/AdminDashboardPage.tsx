@@ -1,0 +1,100 @@
+import {
+  ArrowLeft,
+  Dice5,
+  LogOut,
+  ReceiptText,
+  Users,
+  WalletCards,
+} from 'lucide-react';
+import {
+  Link,
+  Navigate,
+  useNavigate,
+} from 'react-router-dom';
+import {
+  clearAuthSession,
+  getAuthSession,
+} from '../services/auth-session';
+import './Admin.css';
+
+export function AdminDashboardPage() {
+  const navigate = useNavigate();
+  const session = getAuthSession();
+
+  if (!session) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
+  function handleLogout() {
+    clearAuthSession();
+    navigate('/admin/login', { replace: true });
+  }
+
+  return (
+    <main className="admin-dashboard-page">
+      <header className="admin-dashboard-header">
+        <div className="admin-dashboard-brand">
+          <span>
+            <Dice5 size={25} />
+          </span>
+          <div>
+            <strong>Amigos do Board Game</strong>
+            <small>Painel administrativo</small>
+          </div>
+        </div>
+
+        <div className="admin-dashboard-user">
+          <div>
+            <strong>{session.admin.name}</strong>
+            <small>{session.admin.email}</small>
+          </div>
+
+          <button type="button" onClick={handleLogout}>
+            <LogOut size={17} />
+            Sair
+          </button>
+        </div>
+      </header>
+
+      <section className="admin-dashboard-content">
+        <div className="admin-dashboard-heading">
+          <div>
+            <span>Administração</span>
+            <h1>Gerencie o fundo do grupo</h1>
+            <p>
+              Cadastre participantes, entradas, despesas e metas.
+            </p>
+          </div>
+
+          <Link to="/">
+            <ArrowLeft size={17} />
+            Painel público
+          </Link>
+        </div>
+
+        <div className="admin-action-grid">
+          <article>
+            <Users size={25} />
+            <h2>Participantes</h2>
+            <p>Cadastre, consulte e desative participantes.</p>
+            <button type="button">Gerenciar participantes</button>
+          </article>
+
+          <article>
+            <ReceiptText size={25} />
+            <h2>Movimentações</h2>
+            <p>Registre contribuições e despesas do grupo.</p>
+            <button type="button">Nova movimentação</button>
+          </article>
+
+          <article>
+            <WalletCards size={25} />
+            <h2>Meta financeira</h2>
+            <p>Defina o objetivo atual do fundo coletivo.</p>
+            <button type="button">Configurar meta</button>
+          </article>
+        </div>
+      </section>
+    </main>
+  );
+}
