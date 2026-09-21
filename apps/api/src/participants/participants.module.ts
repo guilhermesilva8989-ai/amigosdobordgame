@@ -17,5 +17,9 @@ import { ParticipantsService } from './participants.service.js';
     ParticipantsService,
     ParticipantAliasService,
   ],
+  exports: [
+    ParticipantsService,
+    ParticipantAliasService,
+  ],
 })
 export class ParticipantsModule {}
