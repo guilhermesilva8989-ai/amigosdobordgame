@@ -6,6 +6,7 @@ import {
 import App from '../App';
 import { AdminDashboardPage } from '../pages/AdminDashboardPage';
 import { AdminExpensesPage } from '../pages/AdminExpensesPage';
+import { AdminFinancialGoalPage } from '../pages/AdminFinancialGoalPage';
 import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { AdminParticipantsPage } from '../pages/AdminParticipantsPage';
 import { AdminTransactionsPage } from '../pages/AdminTransactionsPage';
@@ -33,6 +34,10 @@ export function AppRoutes() {
       <Route
         path="/admin/expenses"
         element={<AdminExpensesPage />}
+      />
+      <Route
+        path="/admin/financial-goal"
+        element={<AdminFinancialGoalPage />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

@@ -1,9 +1,11 @@
 import type {
+  AdminFinancialGoal,
   AdminParticipant,
   AdminTransaction,
   CreateParticipantInput,
   CreateTransactionInput,
   RemoveTransactionResponse,
+  SaveFinancialGoalInput,
   UpdateParticipantInput,
   UpdateTransactionInput,
 } from '../types/admin';
@@ -64,7 +66,11 @@ async function authorizedRequest<T>(
     );
   }
 
-  return response.json() as Promise<T>;
+  const responseText = await response.text();
+
+  return (responseText
+    ? JSON.parse(responseText)
+    : null) as T;
 }
 
 export function listAdminParticipants() {
@@ -136,6 +142,24 @@ export function removeAdminTransaction(
     `/admin/transactions/${transactionId}`,
     {
       method: 'DELETE',
+    },
+  );
+}
+
+export function getAdminFinancialGoal() {
+  return authorizedRequest<AdminFinancialGoal | null>(
+    '/admin/financial-goal',
+  );
+}
+
+export function saveAdminFinancialGoal(
+  input: SaveFinancialGoalInput,
+) {
+  return authorizedRequest<AdminFinancialGoal>(
+    '/admin/financial-goal',
+    {
+      method: 'PUT',
+      body: JSON.stringify(input),
     },
   );
 }

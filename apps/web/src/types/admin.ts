@@ -57,3 +57,20 @@ export interface RemoveTransactionResponse {
   message: string;
   id: string;
 }
+
+export interface AdminFinancialGoal {
+  id: string;
+  title: string;
+  targetAmount: string;
+  deadline: string | null;
+  isActive: boolean;
+  createdById: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SaveFinancialGoalInput {
+  title: string;
+  targetAmount: string;
+  deadline?: string;
+}

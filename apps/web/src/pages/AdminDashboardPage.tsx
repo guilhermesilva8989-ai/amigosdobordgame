@@ -114,9 +114,12 @@ export function AdminDashboardPage() {
             <WalletCards size={25} />
             <h2>Meta financeira</h2>
             <p>Defina o objetivo atual do fundo coletivo.</p>
-            <span className="admin-action-button disabled">
+            <Link
+              className="admin-action-button"
+              to="/admin/financial-goal"
+            >
               Configurar meta
-            </span>
+            </Link>
           </article>
         </div>
       </section>

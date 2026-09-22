@@ -110,9 +110,10 @@ export class DashboardService {
       ? Number(financialGoal.targetAmount)
       : 0;
 
+    const goalCurrentAmount = Math.max(balance, 0);
     const percentage =
       targetAmount > 0
-        ? Math.min((balance / targetAmount) * 100, 100)
+        ? Math.min((goalCurrentAmount / targetAmount) * 100, 100)
         : 0;
 
     return {
@@ -132,7 +133,7 @@ export class DashboardService {
             id: financialGoal.id,
             title: financialGoal.title,
             targetAmount,
-            currentAmount: balance,
+            currentAmount: goalCurrentAmount,
             percentage: Number(percentage.toFixed(2)),
             deadline: financialGoal.deadline,
           }

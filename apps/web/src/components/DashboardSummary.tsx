@@ -32,7 +32,7 @@ export function DashboardSummary({
   dashboard,
 }: DashboardSummaryProps) {
   const { summary, goal } = dashboard;
-  const percentage = goal?.percentage ?? 0;
+  const percentage = Math.min(100, Math.max(0, goal?.percentage ?? 0));
 
   return (
     <section className="content-section" id="resumo">
