@@ -1,4 +1,5 @@
 import {
+  ArrowDownRight,
   ArrowLeft,
   Dice5,
   LogOut,
@@ -62,7 +63,7 @@ export function AdminDashboardPage() {
             <span>Administração</span>
             <h1>Gerencie o fundo do grupo</h1>
             <p>
-              Cadastre participantes, entradas, despesas e metas.
+              Cadastre participantes, contribuições, despesas e metas.
             </p>
           </div>
 
@@ -87,10 +88,25 @@ export function AdminDashboardPage() {
 
           <article>
             <ReceiptText size={25} />
-            <h2>Movimentações</h2>
-            <p>Registre contribuições e despesas do grupo.</p>
-            <Link className="admin-action-button" to="/admin/transactions">
-              Nova movimentação
+            <h2>Contribuições</h2>
+            <p>Controle os pagamentos mensais do grupo.</p>
+            <Link
+              className="admin-action-button"
+              to="/admin/transactions"
+            >
+              Gerenciar contribuições
+            </Link>
+          </article>
+
+          <article>
+            <ArrowDownRight size={25} />
+            <h2>Despesas</h2>
+            <p>Registre compras e outros gastos do grupo.</p>
+            <Link
+              className="admin-action-button"
+              to="/admin/expenses"
+            >
+              Gerenciar despesas
             </Link>
           </article>
 
