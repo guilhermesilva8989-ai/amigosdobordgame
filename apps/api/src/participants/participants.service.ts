@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { PrismaService } from '../database/prisma.service.js';
 import { CreateParticipantDto } from './dto/create-participant.dto.js';
@@ -13,6 +17,25 @@ export class ParticipantsService {
   ) {}
 
   async create(dto: CreateParticipantDto, adminId: string) {
+    const normalizedName = dto.name.trim().replace(/\\s+/g, ' ');
+
+    const existingParticipant =
+      await this.prisma.participant.findFirst({
+        where: {
+          name: {
+            equals: normalizedName,
+            mode: 'insensitive',
+          },
+        },
+        select: { id: true },
+      });
+
+    if (existingParticipant) {
+      throw new ConflictException(
+        'Já existe um participante cadastrado com esse nome.',
+      );
+    }
+
     const id = randomUUID();
     const publicCode = `BG-${id.slice(0, 8).toUpperCase()}`;
 
@@ -21,7 +44,7 @@ export class ParticipantsService {
         data: {
           id,
           publicCode,
-          name: dto.name,
+          name: normalizedName,
         },
       }),
       this.prisma.auditLog.create({
