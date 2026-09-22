@@ -16,3 +16,44 @@ export interface UpdateParticipantInput {
   name?: string;
   isActive?: boolean;
 }
+
+export type TransactionType = 'ENTRY' | 'EXPENSE';
+
+export interface AdminTransactionParticipant {
+  id: string;
+  publicCode: string;
+  name: string;
+}
+
+export interface AdminTransaction {
+  id: string;
+  type: TransactionType;
+  amount: string;
+  description: string;
+  referenceMonth: string | null;
+  occurredAt: string;
+  participantId: string | null;
+  createdById: string;
+  createdAt: string;
+  updatedAt: string;
+  participant: AdminTransactionParticipant | null;
+}
+
+export interface CreateTransactionInput {
+  type: TransactionType;
+  amount: string;
+  description: string;
+  referenceMonth?: string;
+  occurredAt?: string;
+  participantId?: string;
+}
+
+export interface UpdateTransactionInput {
+  amount?: string;
+  description?: string;
+}
+
+export interface RemoveTransactionResponse {
+  message: string;
+  id: string;
+}

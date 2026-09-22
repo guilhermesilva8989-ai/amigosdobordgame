@@ -7,6 +7,7 @@ import App from '../App';
 import { AdminDashboardPage } from '../pages/AdminDashboardPage';
 import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { AdminParticipantsPage } from '../pages/AdminParticipantsPage';
+import { AdminTransactionsPage } from '../pages/AdminTransactionsPage';
 
 export function AppRoutes() {
   return (
@@ -23,6 +24,10 @@ export function AppRoutes() {
       <Route
         path="/admin/participants"
         element={<AdminParticipantsPage />}
+      />
+      <Route
+        path="/admin/transactions"
+        element={<AdminTransactionsPage />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

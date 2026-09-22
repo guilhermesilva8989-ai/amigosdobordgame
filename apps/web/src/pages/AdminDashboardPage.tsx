@@ -89,9 +89,9 @@ export function AdminDashboardPage() {
             <ReceiptText size={25} />
             <h2>Movimentações</h2>
             <p>Registre contribuições e despesas do grupo.</p>
-            <span className="admin-action-button disabled">
+            <Link className="admin-action-button" to="/admin/transactions">
               Nova movimentação
-            </span>
+            </Link>
           </article>
 
           <article>

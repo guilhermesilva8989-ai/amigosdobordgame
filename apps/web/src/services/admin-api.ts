@@ -1,12 +1,16 @@
+import type {
+  AdminParticipant,
+  AdminTransaction,
+  CreateParticipantInput,
+  CreateTransactionInput,
+  RemoveTransactionResponse,
+  UpdateParticipantInput,
+  UpdateTransactionInput,
+} from '../types/admin';
 import {
   clearAuthSession,
   getAuthSession,
 } from './auth-session';
-import type {
-  AdminParticipant,
-  CreateParticipantInput,
-  UpdateParticipantInput,
-} from '../types/admin';
 
 const API_URL =
   import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api';
@@ -22,7 +26,9 @@ async function authorizedRequest<T>(
   const session = getAuthSession();
 
   if (!session) {
-    throw new Error('Sessão não encontrada. Faça login novamente.');
+    throw new Error(
+      'Sessão não encontrada. Faça login novamente.',
+    );
   }
 
   const response = await fetch(`${API_URL}${path}`, {
@@ -39,7 +45,9 @@ async function authorizedRequest<T>(
 
   if (response.status === 401) {
     clearAuthSession();
-    throw new Error('Sessão expirada. Faça login novamente.');
+    throw new Error(
+      'Sessão expirada. Faça login novamente.',
+    );
   }
 
   if (!response.ok) {
@@ -52,7 +60,7 @@ async function authorizedRequest<T>(
       : error.message;
 
     throw new Error(
-      message ?? `Não foi possível concluir a operação.`,
+      message ?? 'Não foi possível concluir a operação.',
     );
   }
 
@@ -86,6 +94,48 @@ export function updateAdminParticipant(
     {
       method: 'PATCH',
       body: JSON.stringify(input),
+    },
+  );
+}
+
+export function listAdminTransactions() {
+  return authorizedRequest<AdminTransaction[]>(
+    '/admin/transactions',
+  );
+}
+
+export function createAdminTransaction(
+  input: CreateTransactionInput,
+) {
+  return authorizedRequest<AdminTransaction>(
+    '/admin/transactions',
+    {
+      method: 'POST',
+      body: JSON.stringify(input),
+    },
+  );
+}
+
+export function updateAdminTransaction(
+  transactionId: string,
+  input: UpdateTransactionInput,
+) {
+  return authorizedRequest<AdminTransaction>(
+    `/admin/transactions/${transactionId}`,
+    {
+      method: 'PATCH',
+      body: JSON.stringify(input),
+    },
+  );
+}
+
+export function removeAdminTransaction(
+  transactionId: string,
+) {
+  return authorizedRequest<RemoveTransactionResponse>(
+    `/admin/transactions/${transactionId}`,
+    {
+      method: 'DELETE',
     },
   );
 }

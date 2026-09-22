@@ -1,0 +1,55 @@
+@media (min-width: 1160px) {
+  .contribution-table-wrapper {
+    overflow-x: hidden;
+  }
+
+  .contribution-table {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .admin-transactions-page {
+    width: 100%;
+  }
+
+  .admin-transactions-page .admin-inner-header {
+    padding: 14px 16px;
+  }
+
+  .admin-transactions-page .admin-inner-brand small {
+    display: none;
+  }
+
+  .admin-transactions-page .admin-back-button {
+    padding: 10px 12px;
+  }
+
+  .transactions-content {
+    width: calc(100% - 24px);
+    padding: 28px 0 40px;
+  }
+
+  .transactions-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .transactions-title h1 {
+    font-size: 2rem;
+  }
+
+  .year-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .year-selector select {
+    flex: 1;
+  }
+
+  .participant-column,
+  .participant-name {
+    width: 170px;
+  }
+}

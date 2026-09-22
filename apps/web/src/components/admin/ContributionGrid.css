@@ -1,0 +1,247 @@
+.grid-help {
+  margin: 0 0 10px;
+  padding: 11px 14px;
+  border: 1px solid #edcf9d;
+  border-radius: 10px;
+  background: #fff6e3;
+  color: #79552e;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.grid-help strong {
+  color: #d85b19;
+  font-size: 1rem;
+}
+
+.contribution-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #dfc9b8;
+  border-radius: 14px;
+  background: #fffaf4;
+  box-shadow: 0 16px 40px rgba(72, 35, 17, 0.08);
+}
+
+.contribution-table {
+  width: 100%;
+  min-width: 1090px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  color: #3b1b0f;
+}
+
+.contribution-table th,
+.contribution-table td {
+  height: 56px;
+  border-right: 1px solid #ead9ca;
+  border-bottom: 1px solid #ead9ca;
+}
+
+.contribution-table tr > :last-child {
+  border-right: 0;
+}
+
+.contribution-table thead th {
+  height: 42px;
+  padding: 0 4px;
+  background: #f3dfca;
+  color: #6f432e;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.contribution-table thead th:first-child {
+  border-top-left-radius: 13px;
+}
+
+.contribution-table .total-column {
+  position: sticky;
+  right: 0;
+  z-index: 4;
+  width: 120px;
+  background: #ddebca;
+  color: #47731f;
+}
+
+.participant-column,
+.participant-name {
+  width: 190px;
+}
+
+.participant-name {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  padding: 8px 14px;
+  background: #fffaf4;
+  text-align: left;
+}
+
+.participant-name strong,
+.participant-name small {
+  display: block;
+}
+
+.participant-name strong {
+  color: #34160c;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+.participant-name small {
+  margin-top: 5px;
+  color: #a27860;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.contribution-table tbody tr:hover .participant-name {
+  background: #fff3e3;
+}
+
+.contribution-cell {
+  position: relative;
+  min-width: 64px;
+  padding: 0;
+  background: #fffdfa;
+  cursor: text;
+  transition: background 160ms ease;
+}
+
+.contribution-cell:hover {
+  background: #fff2df;
+}
+
+.contribution-cell.has-value {
+  background: #f2f8e9;
+}
+
+.contribution-cell .currency-prefix {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  z-index: 1;
+  display: none;
+  color: #799254;
+  font-size: 0.54rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.contribution-cell.has-value .currency-prefix,
+.contribution-cell:focus-within .currency-prefix {
+  display: block;
+}
+
+.contribution-cell input {
+  width: 100%;
+  height: 55px;
+  padding: 0 15px;
+  border: 2px solid transparent;
+  outline: 0;
+  background: transparent;
+  color: #432013;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  cursor: text;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.contribution-cell input::placeholder {
+  color: #c88b5c;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.contribution-cell input:focus {
+  border-color: #df7f24;
+  background: #fff;
+}
+
+.contribution-cell.has-value input {
+  color: #47731f;
+  font-weight: 900;
+}
+
+.contribution-cell.saving {
+  background: #fff1c7;
+}
+
+.contribution-cell.saved {
+  background: #e5f4d5;
+}
+
+.cell-status {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  color: #3e7b24;
+  font-size: 0.65rem;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.contribution-cell.saving .cell-status {
+  color: #c27816;
+}
+
+.participant-total {
+  position: sticky;
+  right: 0;
+  z-index: 3;
+  width: 120px;
+  padding: 0 14px;
+  background: #edf7df;
+  color: #47731f;
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.contribution-table tfoot th,
+.contribution-table tfoot td {
+  height: 48px;
+  border-bottom: 0;
+  background: #3d190e;
+  color: #fff;
+  font-weight: 900;
+}
+
+.contribution-table tfoot th {
+  padding: 0 18px;
+  border-bottom-left-radius: 13px;
+  text-align: right;
+}
+
+.contribution-table tfoot td {
+  position: sticky;
+  right: 0;
+  z-index: 4;
+  width: 120px;
+  padding: 0 14px;
+  border-bottom-right-radius: 13px;
+  color: #ffd35a;
+  font-size: 0.88rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.contribution-empty {
+  padding: 36px 20px;
+  border: 1px dashed #d8bca7;
+  border-radius: 14px;
+  background: #fffaf4;
+  color: #8b6753;
+  text-align: center;
+}
+

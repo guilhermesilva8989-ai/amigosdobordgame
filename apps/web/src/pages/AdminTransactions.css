@@ -1,0 +1,136 @@
+.admin-transactions-page {
+  position: relative;
+  left: 50%;
+  width: min(1380px, calc(100vw - 32px));
+  min-height: 100vh;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 184, 92, 0.14),
+      transparent 32%
+    ),
+    #f8efe3;
+}
+
+.admin-transactions-page .admin-inner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  min-height: 80px;
+  padding: 15px 24px;
+  background: #3d190e;
+  color: #fff;
+}
+
+.admin-transactions-page .admin-inner-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-transactions-page .admin-inner-brand > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 11px;
+  background: #e97418;
+  color: #fff;
+}
+
+.admin-transactions-page .admin-inner-brand div {
+  display: grid;
+  gap: 3px;
+}
+
+.admin-transactions-page .admin-inner-brand strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.admin-transactions-page .admin-inner-brand small {
+  color: #efbda7;
+  font-size: 0.8rem;
+}
+
+.admin-transactions-page .admin-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.admin-transactions-page .admin-back-button:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.transactions-content {
+  width: min(1220px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 34px 0 48px;
+}
+
+.transactions-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.transactions-title .admin-eyebrow {
+  display: block;
+  text-align: left;
+}
+
+.transactions-title h1 {
+  margin: 5px 0 4px;
+  color: #251108;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  line-height: 1.05;
+}
+
+.transactions-title p {
+  margin: 0;
+  color: #8a654f;
+  font-size: 1rem;
+}
+
+.year-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6c402d;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.year-selector select {
+  min-width: 104px;
+  padding: 10px 34px 10px 14px;
+  border: 1px solid #dfc9b8;
+  border-radius: 10px;
+  outline: none;
+  background: #fffaf4;
+  color: #3d1a0e;
+  font: inherit;
+  cursor: pointer;
+}
+
+.year-selector select:focus {
+  border-color: #d96b1b;
+  box-shadow: 0 0 0 3px rgba(217, 107, 27, 0.12);
+}
+

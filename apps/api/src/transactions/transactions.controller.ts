@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
+  Patch,
   Post,
   Req,
   UseGuards,
@@ -16,6 +19,7 @@ import {
 import type { AuthenticatedRequest } from '../auth/auth.types.js';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard.js';
 import { CreateTransactionDto } from './dto/create-transaction.dto.js';
+import { UpdateTransactionDto } from './dto/update-transaction.dto.js';
 import { TransactionsService } from './transactions.service.js';
 
 @ApiTags('Administração — Movimentações')
@@ -28,9 +32,7 @@ export class TransactionsController {
   ) {}
 
   @Post()
-  @ApiOperation({
-    summary: 'Registra uma entrada ou despesa',
-  })
+  @ApiOperation({ summary: 'Registra uma entrada ou despesa' })
   @ApiCreatedResponse({
     description: 'Movimentação registrada.',
   })
@@ -53,6 +55,34 @@ export class TransactionsController {
   })
   findAll() {
     return this.transactionsService.findAllAdmin();
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Atualiza uma movimentação' })
+  @ApiOkResponse({ description: 'Movimentação atualizada.' })
+  update(
+    @Param('id') id: string,
+    @Body() dto: UpdateTransactionDto,
+    @Req() request: AuthenticatedRequest,
+  ) {
+    return this.transactionsService.update(
+      id,
+      dto,
+      request.admin.id,
+    );
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Remove uma movimentação' })
+  @ApiOkResponse({ description: 'Movimentação removida.' })
+  remove(
+    @Param('id') id: string,
+    @Req() request: AuthenticatedRequest,
+  ) {
+    return this.transactionsService.remove(
+      id,
+      request.admin.id,
+    );
   }
 }
 
