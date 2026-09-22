@@ -352,11 +352,18 @@ footer {
   font-weight: 700;
 }
 
+.summary-card > div:not(.card-icon) {
+  flex: 1;
+  min-width: 0;
+}
+
 .summary-card strong {
   display: block;
   margin: 10px 0 8px;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: clamp(18px, 1.3vw, 22px);
+  letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
 .summary-card small {
@@ -416,6 +423,11 @@ footer {
 .goal-values {
   display: flex;
   justify-content: space-between;
+  gap: 16px;
+}
+
+.goal-values span {
+  white-space: nowrap;
 }
 
 .dashboard-grid {
