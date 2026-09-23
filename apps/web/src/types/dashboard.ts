@@ -35,7 +35,16 @@ export interface DashboardTransaction {
   participantCode: string | null;
 }
 
+export interface DashboardSettings {
+  heroTitle: string;
+  heroDescription: string;
+  bannerUrl: string;
+  showGoal: boolean;
+  nameDisplayMode: 'FANTASY' | 'REAL';
+}
+
 export interface DashboardResponse {
+  settings: DashboardSettings;
   generatedAt: string;
   referenceMonth: string;
   summary: DashboardSummary;

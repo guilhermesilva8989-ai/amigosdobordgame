@@ -7,6 +7,7 @@ import { DashboardModule } from './dashboard/dashboard.module.js';
 import { DatabaseModule } from './database/database.module.js';
 import { FinancialGoalsModule } from './financial-goals/financial-goals.module.js';
 import { ParticipantsModule } from './participants/participants.module.js';
+import { SiteSettingsModule } from './site-settings/site-settings.module.js';
 import { TransactionsModule } from './transactions/transactions.module.js';
 
 @Module({
@@ -20,6 +21,7 @@ import { TransactionsModule } from './transactions/transactions.module.js';
     ParticipantsModule,
     TransactionsModule,
     FinancialGoalsModule,
+    SiteSettingsModule,
     DashboardModule,
   ],
   controllers: [AppController],

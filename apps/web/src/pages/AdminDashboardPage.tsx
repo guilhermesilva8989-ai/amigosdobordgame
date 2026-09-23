@@ -4,6 +4,7 @@ import {
   Dice5,
   LogOut,
   ReceiptText,
+  Settings2,
   Users,
   WalletCards,
 } from 'lucide-react';
@@ -119,6 +120,18 @@ export function AdminDashboardPage() {
               to="/admin/financial-goal"
             >
               Configurar meta
+            </Link>
+          </article>
+
+          <article>
+            <Settings2 size={25} />
+            <h2>Página inicial</h2>
+            <p>Personalize o banner, os textos e a privacidade.</p>
+            <Link
+              className="admin-action-button"
+              to="/admin/site-settings"
+            >
+              Configurar página
             </Link>
           </article>
         </div>

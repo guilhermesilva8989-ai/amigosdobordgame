@@ -1,0 +1,370 @@
+.admin-settings-page {
+  min-height: 100vh;
+  background: #f8efe3;
+  color: #26120b;
+}
+
+.admin-settings-header {
+  width: min(100% - 32px, 980px);
+  min-height: 84px;
+  margin: 0 auto;
+  padding: 16px 22px;
+  background: #421b0f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin-settings-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.admin-settings-brand > span {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #e56b16;
+}
+
+.admin-settings-brand strong,
+.admin-settings-brand small {
+  display: block;
+}
+
+.admin-settings-brand small {
+  margin-top: 4px;
+  color: #e8b9a7;
+}
+
+.admin-settings-header > a {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.admin-settings-content {
+  width: min(100% - 32px, 900px);
+  margin: 0 auto;
+  padding: 48px 0 70px;
+}
+
+.admin-settings-heading {
+  margin-bottom: 28px;
+}
+
+.admin-settings-heading > span {
+  color: #d63722;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.admin-settings-heading h1 {
+  margin: 8px 0 4px;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+}
+
+.admin-settings-heading p {
+  margin: 0;
+  color: #94634d;
+  font-size: 1.04rem;
+}
+
+.admin-settings-loading {
+  min-height: 260px;
+  border: 1px solid #ead2c2;
+  border-radius: 17px;
+  background: #fffaf4;
+  color: #8b573f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.admin-settings-form {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-settings-card {
+  padding: 24px;
+  border: 1px solid #ead2c2;
+  border-radius: 17px;
+  background: #fffaf4;
+  box-shadow: 0 13px 35px rgba(87, 39, 20, 0.05);
+  display: grid;
+  gap: 20px;
+}
+
+.admin-settings-card-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.admin-settings-card-title > svg {
+  padding: 9px;
+  box-sizing: content-box;
+  border-radius: 11px;
+  color: #d93621;
+  background: #ffebe3;
+}
+
+.admin-settings-card-title h2 {
+  margin: 1px 0 4px;
+  font-size: 1.2rem;
+}
+
+.admin-settings-card-title p {
+  margin: 0;
+  color: #986954;
+}
+
+.admin-settings-card > label {
+  color: #572b1c;
+  font-size: 0.88rem;
+  font-weight: 800;
+  display: grid;
+  gap: 8px;
+}
+
+.admin-settings-card input[type='text'],
+.admin-settings-card textarea {
+  width: 100%;
+  border: 1px solid #dfc7b8;
+  border-radius: 10px;
+  background: #fff;
+  color: #26120b;
+  font: inherit;
+  font-weight: 500;
+  outline: none;
+}
+
+.admin-settings-card input[type='text'] {
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.admin-settings-card textarea {
+  padding: 13px 14px;
+  resize: vertical;
+}
+
+.admin-settings-card input:focus,
+.admin-settings-card textarea:focus {
+  border-color: #df3c27;
+  box-shadow: 0 0 0 3px rgba(223, 60, 39, 0.12);
+}
+
+.admin-banner-preview {
+  overflow: hidden;
+  border: 1px solid #ead2c2;
+  border-radius: 13px;
+  background: #f4e5d8;
+}
+
+.admin-banner-preview > span {
+  padding: 10px 14px;
+  color: #81503b;
+  font-size: 0.77rem;
+  font-weight: 900;
+  display: block;
+}
+
+.admin-banner-preview img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  background: #32140c;
+  display: block;
+}
+
+.admin-settings-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-settings-options > label {
+  min-height: 110px;
+  padding: 17px;
+  border: 1px solid #e5cdbc;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.admin-settings-options > label.selected {
+  border-color: #dc3b25;
+  background: #fff1eb;
+  box-shadow: 0 0 0 2px rgba(220, 59, 37, 0.1);
+}
+
+.admin-settings-options input {
+  margin-top: 4px;
+  accent-color: #d93621;
+}
+
+.admin-settings-options strong,
+.admin-settings-options small {
+  display: block;
+}
+
+.admin-settings-options small {
+  margin-top: 6px;
+  color: #966650;
+  line-height: 1.45;
+}
+
+.admin-settings-switch {
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  cursor: pointer;
+}
+
+.admin-settings-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.admin-settings-switch > span {
+  width: 48px;
+  height: 27px;
+  padding: 3px;
+  border-radius: 999px;
+  background: #ccb7ab;
+  transition: 0.2s ease;
+}
+
+.admin-settings-switch > span::after {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(52, 22, 13, 0.25);
+  content: '';
+  display: block;
+  transition: 0.2s ease;
+}
+
+.admin-settings-switch input:checked + span {
+  background: #d93621;
+}
+
+.admin-settings-switch input:checked + span::after {
+  transform: translateX(21px);
+}
+
+.admin-settings-switch strong,
+.admin-settings-switch small {
+  display: block;
+}
+
+.admin-settings-switch small {
+  margin-top: 4px;
+  color: #966650;
+  font-weight: 500;
+}
+
+.admin-settings-message {
+  padding: 14px 16px;
+  border-radius: 11px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.admin-settings-message.success {
+  border: 1px solid #a8d699;
+  background: #eaf8e4;
+  color: #397727;
+}
+
+.admin-settings-message.error {
+  border: 1px solid #f1b5aa;
+  background: #ffebe7;
+  color: #b72c1a;
+}
+
+.admin-settings-save {
+  min-height: 50px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 11px;
+  background: #d93220;
+  color: #fff;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.admin-settings-save:hover:not(:disabled) {
+  background: #b92717;
+}
+
+.admin-settings-save:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.spin {
+  animation: settings-spin 0.8s linear infinite;
+}
+
+@keyframes settings-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 680px) {
+  .admin-settings-header {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .admin-settings-brand small {
+    display: none;
+  }
+
+  .admin-settings-content {
+    width: min(100% - 24px, 900px);
+    padding-top: 32px;
+  }
+
+  .admin-settings-card {
+    padding: 18px;
+  }
+
+  .admin-settings-options {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-settings-save {
+    width: 100%;
+  }
+}

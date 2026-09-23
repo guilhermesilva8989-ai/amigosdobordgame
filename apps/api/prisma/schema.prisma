@@ -19,6 +19,11 @@ enum AuditAction {
   LOGIN
 }
 
+enum NameDisplayMode {
+  FANTASY
+  REAL
+}
+
 model Admin {
   id             String          @id @default(uuid()) @db.Uuid
   name           String          @db.VarChar(100)
@@ -82,6 +87,19 @@ model FinancialGoal {
 
   @@index([isActive])
   @@map("financial_goals")
+}
+
+model SiteSettings {
+  id              String          @id @default("main") @db.VarChar(20)
+  heroTitle       String          @default("Diversão organizada, contas transparentes.") @map("hero_title") @db.VarChar(180)
+  heroDescription String          @default("Acompanhe as contribuições, despesas e o saldo do grupo de forma simples e segura.") @map("hero_description") @db.VarChar(500)
+  bannerUrl       String          @default("/banner.jpeg") @map("banner_url") @db.VarChar(1000)
+  showGoal        Boolean         @default(true) @map("show_goal")
+  nameDisplayMode NameDisplayMode @default(FANTASY) @map("name_display_mode")
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime        @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("site_settings")
 }
 
 model AuditLog {

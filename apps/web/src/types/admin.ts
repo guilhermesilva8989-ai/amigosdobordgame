@@ -74,3 +74,24 @@ export interface SaveFinancialGoalInput {
   targetAmount: string;
   deadline?: string;
 }
+
+export type NameDisplayMode = 'FANTASY' | 'REAL';
+
+export interface AdminSiteSettings {
+  id: string;
+  heroTitle: string;
+  heroDescription: string;
+  bannerUrl: string;
+  showGoal: boolean;
+  nameDisplayMode: NameDisplayMode;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SaveSiteSettingsInput {
+  heroTitle: string;
+  heroDescription: string;
+  bannerUrl: string;
+  showGoal: boolean;
+  nameDisplayMode: NameDisplayMode;
+}

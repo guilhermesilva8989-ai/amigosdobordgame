@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service.js';
 import { ParticipantAliasService } from '../participants/participant-alias.service.js';
+import { SiteSettingsService } from '../site-settings/site-settings.service.js';
 
 @Injectable()
 export class DashboardService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly aliasService: ParticipantAliasService,
+    private readonly siteSettingsService: SiteSettingsService,
   ) {}
 
   async getPublicDashboard() {
@@ -23,6 +25,7 @@ export class DashboardService {
       contributions,
       recentTransactions,
       financialGoal,
+      settings,
     ] = await Promise.all([
       this.prisma.transaction.aggregate({
         where: { type: 'ENTRY' },
@@ -37,6 +40,7 @@ export class DashboardService {
         select: {
           id: true,
           publicCode: true,
+          name: true,
           joinedAt: true,
         },
         orderBy: { id: 'asc' },
@@ -75,6 +79,7 @@ export class DashboardService {
         },
         orderBy: { createdAt: 'desc' },
       }),
+      this.siteSettingsService.find(),
     ]);
 
     const totalEntries = Number(entries._sum.amount ?? 0);
@@ -97,9 +102,14 @@ export class DashboardService {
       const paid =
         contributionByParticipant.get(participant.id) ?? 0;
 
+      const displayName =
+        settings.nameDisplayMode === 'REAL'
+          ? participant.name
+          : aliases.get(participant.id);
+
       return {
         publicCode: participant.publicCode,
-        alias: aliases.get(participant.id),
+        alias: displayName,
         joinedAt: participant.joinedAt,
         paid,
         status: paid > 0 ? 'PAID' : 'PENDING',
@@ -111,14 +121,25 @@ export class DashboardService {
       : 0;
 
     const goalCurrentAmount = Math.max(balance, 0);
+
     const percentage =
       targetAmount > 0
-        ? Math.min((goalCurrentAmount / targetAmount) * 100, 100)
+        ? Math.min(
+            (goalCurrentAmount / targetAmount) * 100,
+            100,
+          )
         : 0;
 
     return {
       generatedAt: now,
       referenceMonth,
+      settings: {
+        heroTitle: settings.heroTitle,
+        heroDescription: settings.heroDescription,
+        bannerUrl: settings.bannerUrl,
+        showGoal: settings.showGoal,
+        nameDisplayMode: settings.nameDisplayMode,
+      },
       summary: {
         totalEntries,
         totalExpenses,
@@ -128,16 +149,17 @@ export class DashboardService {
           (participant) => participant.status === 'PAID',
         ).length,
       },
-      goal: financialGoal
-        ? {
-            id: financialGoal.id,
-            title: financialGoal.title,
-            targetAmount,
-            currentAmount: goalCurrentAmount,
-            percentage: Number(percentage.toFixed(2)),
-            deadline: financialGoal.deadline,
-          }
-        : null,
+      goal:
+        settings.showGoal && financialGoal
+          ? {
+              id: financialGoal.id,
+              title: financialGoal.title,
+              targetAmount,
+              currentAmount: goalCurrentAmount,
+              percentage: Number(percentage.toFixed(2)),
+              deadline: financialGoal.deadline,
+            }
+          : null,
       participants: publicParticipants,
       recentTransactions: recentTransactions.map(
         (transaction) => ({

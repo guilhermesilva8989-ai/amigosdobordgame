@@ -9,6 +9,7 @@ import { AdminExpensesPage } from '../pages/AdminExpensesPage';
 import { AdminFinancialGoalPage } from '../pages/AdminFinancialGoalPage';
 import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { AdminParticipantsPage } from '../pages/AdminParticipantsPage';
+import { AdminSiteSettingsPage } from '../pages/AdminSiteSettingsPage';
 import { AdminTransactionsPage } from '../pages/AdminTransactionsPage';
 
 export function AppRoutes() {
@@ -38,6 +39,10 @@ export function AppRoutes() {
       <Route
         path="/admin/financial-goal"
         element={<AdminFinancialGoalPage />}
+      />
+      <Route
+        path="/admin/site-settings"
+        element={<AdminSiteSettingsPage />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

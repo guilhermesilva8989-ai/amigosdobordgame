@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { PrismaService } from '../database/prisma.service.js';
 import { ParticipantAliasService } from '../participants/participant-alias.service.js';
+import { SiteSettingsService } from '../site-settings/site-settings.service.js';
 import { DashboardService } from './dashboard.service.js';
 
 describe('DashboardService', () => {
@@ -53,13 +54,37 @@ describe('DashboardService', () => {
       },
     } as unknown as PrismaService;
 
+    const siteSettingsService = {
+      find: vi.fn().mockResolvedValue({
+        id: 'main',
+        heroTitle:
+          'Diversão organizada, contas transparentes.',
+        heroDescription:
+          'Acompanhe as contribuições, despesas e o saldo do grupo.',
+        bannerUrl: '/banner.jpeg',
+        showGoal: true,
+        nameDisplayMode: 'FANTASY',
+      }),
+    } as unknown as SiteSettingsService;
+
     const service = new DashboardService(
       prisma,
       new ParticipantAliasService(),
+      siteSettingsService,
     );
 
     const result = await service.getPublicDashboard();
     const serializedResult = JSON.stringify(result);
+
+    expect(result.settings).toEqual({
+      heroTitle:
+        'Diversão organizada, contas transparentes.',
+      heroDescription:
+        'Acompanhe as contribuições, despesas e o saldo do grupo.',
+      bannerUrl: '/banner.jpeg',
+      showGoal: true,
+      nameDisplayMode: 'FANTASY',
+    });
 
     expect(result.summary).toEqual({
       totalEntries: 100,

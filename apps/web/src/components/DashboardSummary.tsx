@@ -2,7 +2,6 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   CalendarDays,
-  Target,
   Users,
   WalletCards,
 } from 'lucide-react';
@@ -31,8 +30,7 @@ const formatMonth = (value: string) => {
 export function DashboardSummary({
   dashboard,
 }: DashboardSummaryProps) {
-  const { summary, goal } = dashboard;
-  const percentage = Math.min(100, Math.max(0, goal?.percentage ?? 0));
+  const { summary } = dashboard;
 
   return (
     <section className="content-section" id="resumo">
@@ -96,42 +94,6 @@ export function DashboardSummary({
         </article>
       </div>
 
-      {goal && (
-        <div className="goal-card">
-          <div className="goal-icon">
-            <Target size={28} />
-          </div>
-
-          <div className="goal-content">
-            <div className="goal-title">
-              <div>
-                <span>Meta do fundo</span>
-                <strong>{goal.title}</strong>
-              </div>
-              <strong>{percentage.toFixed(1)}%</strong>
-            </div>
-
-            <div
-              className="progress-track"
-              role="progressbar"
-              aria-valuenow={percentage}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              <span style={{ width: `${percentage}%` }} />
-            </div>
-
-            <div className="goal-values">
-              <span>
-                {formatCurrency(goal.currentAmount)} arrecadados
-              </span>
-              <span>
-                Meta: {formatCurrency(goal.targetAmount)}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

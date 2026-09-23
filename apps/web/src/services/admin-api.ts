@@ -1,11 +1,13 @@
 import type {
   AdminFinancialGoal,
   AdminParticipant,
+  AdminSiteSettings,
   AdminTransaction,
   CreateParticipantInput,
   CreateTransactionInput,
   RemoveTransactionResponse,
   SaveFinancialGoalInput,
+  SaveSiteSettingsInput,
   UpdateParticipantInput,
   UpdateTransactionInput,
 } from '../types/admin';
@@ -47,6 +49,7 @@ async function authorizedRequest<T>(
 
   if (response.status === 401) {
     clearAuthSession();
+
     throw new Error(
       'Sessão expirada. Faça login novamente.',
     );
@@ -157,6 +160,24 @@ export function saveAdminFinancialGoal(
 ) {
   return authorizedRequest<AdminFinancialGoal>(
     '/admin/financial-goal',
+    {
+      method: 'PUT',
+      body: JSON.stringify(input),
+    },
+  );
+}
+
+export function getAdminSiteSettings() {
+  return authorizedRequest<AdminSiteSettings>(
+    '/admin/site-settings',
+  );
+}
+
+export function saveAdminSiteSettings(
+  input: SaveSiteSettingsInput,
+) {
+  return authorizedRequest<AdminSiteSettings>(
+    '/admin/site-settings',
     {
       method: 'PUT',
       body: JSON.stringify(input),

@@ -1306,3 +1306,243 @@ footer {
     flex-direction: column;
   }
 }
+
+/* Página inicial: banner central e meta no rodapé */
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+  padding: clamp(20px, 4vw, 42px);
+  text-align: center;
+}
+
+.hero-visual {
+  display: grid;
+  width: 100%;
+  min-height: 0;
+  background: none;
+  place-items: center;
+}
+
+.hero-visual::after {
+  display: none;
+}
+
+.hero-visual img {
+  display: block;
+  width: min(100%, 750px);
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 24px 20px 32px;
+  text-align: center;
+}
+
+.hero h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(30px, 4vw, 52px);
+}
+
+.hero p {
+  max-width: 680px;
+  margin: 14px auto 0;
+}
+
+.goal-section {
+  margin-top: 48px;
+}
+
+@media (max-width: 900px) {
+  .hero-visual {
+    min-height: 0;
+    background: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 18px 12px;
+  }
+
+  .hero-visual {
+    min-height: 0;
+  }
+
+  .hero-visual img {
+    max-height: 70vh;
+  }
+
+  .hero-content {
+    padding: 20px 12px 26px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}
+
+/* Banner vertical com laterais preenchidas */
+.hero {
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero-visual {
+  position: relative;
+  display: grid;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  min-height: 0;
+  padding: 28px 24px 0;
+  background: #33170f;
+  place-items: center;
+}
+
+.hero-visual .hero-backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  max-height: none;
+  object-fit: cover;
+  filter: blur(30px) brightness(0.38) saturate(1.25);
+}
+
+.hero-visual::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  display: block;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(48, 17, 11, 0.58),
+    rgba(48, 17, 11, 0.1) 38%,
+    rgba(48, 17, 11, 0.1) 62%,
+    rgba(48, 17, 11, 0.58)
+  );
+}
+
+.hero-visual .hero-poster {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(100%, 750px);
+  max-height: 78vh;
+  object-fit: contain;
+  box-shadow: 0 18px 55px rgba(24, 8, 5, 0.36);
+}
+
+.hero-content {
+  width: 100%;
+  padding: 30px 28px 46px;
+  background: linear-gradient(135deg, #48180f, #782315);
+}
+
+@media (max-width: 600px) {
+  .hero-visual {
+    padding: 12px 12px 0;
+  }
+
+  .hero-visual .hero-poster {
+    max-height: 70vh;
+  }
+
+  .hero-content {
+    padding: 24px 20px 34px;
+  }
+}
+
+/* Ajuste final: altura compacta do banner */
+.hero-visual img,
+.hero-visual .hero-poster {
+  max-height: min(55vh, 560px);
+}
+
+@media (max-width: 600px) {
+  .hero-visual img,
+  .hero-visual .hero-poster {
+    max-height: min(50vh, 440px);
+  }
+}
+
+/* Banner alinhado à largura do menu */
+@media (min-width: 1101px) {
+  .hero {
+    width: calc(100% + 120px);
+    max-width: none;
+    margin-right: -60px;
+    margin-left: -60px;
+  }
+}
+
+.hero-visual {
+  padding-top: 16px;
+}
+
+.hero-visual .hero-poster,
+.hero-visual img:not(.hero-backdrop) {
+  max-height: min(40vh, 400px);
+}
+
+.hero-content {
+  padding-top: 22px;
+  padding-bottom: 32px;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-visual {
+    padding-top: 10px;
+  }
+
+  .hero-visual .hero-poster,
+  .hero-visual img:not(.hero-backdrop) {
+    max-height: min(36vh, 320px);
+  }
+}
+
+/* Banner nítido esticado em toda a largura */
+.hero-visual {
+  padding: 0;
+  background: #32150e;
+}
+
+.hero-visual .hero-backdrop,
+.hero-visual::after {
+  display: none;
+}
+
+.hero-visual .hero-poster,
+.hero-visual img:not(.hero-backdrop) {
+  width: 100%;
+  height: clamp(260px, 30vw, 370px);
+  max-height: none;
+  object-fit: fill;
+  box-shadow: none;
+}
+
+@media (max-width: 600px) {
+  .hero-visual .hero-poster,
+  .hero-visual img:not(.hero-backdrop) {
+    height: clamp(220px, 65vw, 300px);
+  }
+}

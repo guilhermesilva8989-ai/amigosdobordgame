@@ -1,11 +1,8 @@
 import {
-  CheckCircle2,
   Coins,
   Dice5,
   LockKeyhole,
   PiggyBank,
-  ShieldCheck,
-  Sparkles,
   TrendingUp,
 } from 'lucide-react';
 import { DashboardContent } from './components/DashboardContent';
@@ -19,6 +16,8 @@ function App() {
     error,
     refresh,
   } = useDashboard();
+
+  const settings = dashboard?.settings;
 
   return (
     <div className="app-shell">
@@ -54,46 +53,30 @@ function App() {
       </header>
 
       <main id="inicio">
-        <section className="hero">
-          <div className="hero-content">
-            <span className="eyebrow">
-              <Sparkles size={16} />
-              Fundo coletivo para nossas partidas
-            </span>
-
-            <h1>
-              Diversão organizada,
-              <span> contas transparentes.</span>
-            </h1>
-
-            <p>
-              Acompanhe as contribuições, despesas e o saldo do
-              grupo de forma simples e segura. Somente o
-              administrador pode alterar os dados.
-            </p>
-
-            <div className="hero-badges">
-              <span>
-                <ShieldCheck size={17} />
-                Consulta pública
-              </span>
-
-              <span>
-                <CheckCircle2 size={17} />
-                Dados atualizados
-              </span>
-            </div>
+        <section className="hero" aria-label="Apresentação do grupo">
+          <div className="hero-visual">
+            <img
+              className="hero-backdrop"
+              src={settings?.bannerUrl || '/banner.jpeg'}
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              className="hero-poster"
+              src={settings?.bannerUrl || '/banner.jpeg'}
+              alt="Banner do grupo Amigos do Board Game"
+            />
           </div>
 
-          <div className="hero-visual" aria-hidden="true">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-
-            <div className="dice-card">
-              <Dice5 size={58} />
-              <span>Próxima partida</span>
-              <strong>28 de setembro</strong>
-            </div>
+          <div className="hero-content">
+            <h1>
+              {settings?.heroTitle ||
+                'Diversão organizada, contas transparentes.'}
+            </h1>
+            <p>
+              {settings?.heroDescription ||
+                'Acompanhe as contribuições, despesas e o saldo do grupo de forma simples e segura.'}
+            </p>
           </div>
         </section>
 

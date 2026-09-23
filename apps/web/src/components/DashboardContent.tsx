@@ -1,4 +1,5 @@
 import type { DashboardResponse } from '../types/dashboard';
+import { DashboardGoal } from './DashboardGoal';
 import { DashboardPanels } from './DashboardPanels';
 import { DashboardSummary } from './DashboardSummary';
 
@@ -59,6 +60,9 @@ export function DashboardContent({
 
       <DashboardSummary dashboard={dashboard} />
       <DashboardPanels dashboard={dashboard} />
+      {dashboard.settings.showGoal && (
+        <DashboardGoal goal={dashboard.goal} />
+      )}
     </>
   );
 }
