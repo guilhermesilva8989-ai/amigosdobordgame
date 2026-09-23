@@ -110,7 +110,23 @@ export function AdminTransactionsPage() {
           <div>
             <span className="admin-eyebrow">Contribuições</span>
             <h1>Pagamentos mensais</h1>
-            <p>Adicione ou remova valores diretamente na tabela. <a href="/admin/transactions/history">Ver histórico completo e excluir movimentações</a></p>
+            <p>Adicione ou remova valores diretamente na tabela.</p>
+            <Link
+              to="/admin/transactions/history"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                marginTop: 12,
+                padding: '10px 16px',
+                borderRadius: 10,
+                background: '#bd3624',
+                color: '#ffffff',
+                fontWeight: 700,
+                textDecoration: 'none',
+              }}
+            >
+              Ver histórico e excluir movimentações →
+            </Link>
           </div>
 
           <label className="year-selector">

@@ -112,7 +112,7 @@ export function AdminTransactionHistoryPage() {
       <header className="transaction-history-header">
         <div>
           <small>ÁREA ADMINISTRATIVA</small>
-          <h1>Histórico de movimentações</h1>
+          <h1 style={{ color: "#fffaf3" }}>Histórico de movimentações</h1>
           <p>Entradas e despesas registradas no fundo.</p>
         </div>
         <Link to="/admin">Voltar ao painel</Link>
