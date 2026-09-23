@@ -11,6 +11,7 @@ import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { AdminParticipantsPage } from '../pages/AdminParticipantsPage';
 import { AdminSiteSettingsPage } from '../pages/AdminSiteSettingsPage';
 import { AdminTransactionsPage } from '../pages/AdminTransactionsPage';
+import { AdminTransactionHistoryPage } from '../pages/AdminTransactionHistoryPage';
 
 export function AppRoutes() {
   return (
@@ -31,6 +32,10 @@ export function AppRoutes() {
       <Route
         path="/admin/transactions"
         element={<AdminTransactionsPage />}
+      />
+      <Route
+        path="/admin/transactions/history"
+        element={<AdminTransactionHistoryPage />}
       />
       <Route
         path="/admin/expenses"
