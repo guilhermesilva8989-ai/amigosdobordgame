@@ -107,6 +107,13 @@ export function updateAdminParticipant(
   );
 }
 
+export function removeAdminParticipant(participantId: string) {
+  return authorizedRequest<{ message: string }>(
+    `/admin/participants/${participantId}`,
+    { method: 'DELETE' },
+  );
+}
+
 export function listAdminTransactions() {
   return authorizedRequest<AdminTransaction[]>(
     '/admin/transactions',

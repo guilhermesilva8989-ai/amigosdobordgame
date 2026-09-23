@@ -19,6 +19,7 @@ import {
 import {
   createAdminParticipant,
   listAdminParticipants,
+  removeAdminParticipant,
   updateAdminParticipant,
 } from '../services/admin-api';
 import { getAuthSession } from '../services/auth-session';
@@ -149,6 +150,36 @@ export function AdminParticipantsPage() {
     }
   }
 
+  async function handleRemove(participant: AdminParticipant) {
+    if (
+      !window.confirm(
+        `Excluir definitivamente "${participant.name}"? Esta ação não pode ser desfeita.`,
+      )
+    ) {
+      return;
+    }
+
+    setUpdatingId(participant.id);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      await removeAdminParticipant(participant.id);
+      setParticipants((current) =>
+        current.filter((item) => item.id !== participant.id),
+      );
+      setSuccess('Participante excluído com sucesso.');
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : 'Não foi possível excluir o participante.',
+      );
+    } finally {
+      setUpdatingId(null);
+    }
+  }
+
   return (
     <main className="admin-dashboard-page">
       <header className="admin-dashboard-header">
@@ -268,18 +299,29 @@ export function AdminParticipantsPage() {
                 {participant.isActive ? 'Ativo' : 'Inativo'}
               </span>
 
-              <button
-                type="button"
-                className="participant-toggle"
-                disabled={updatingId === participant.id}
-                onClick={() => void handleToggle(participant)}
-              >
-                {updatingId === participant.id
-                  ? 'Salvando...'
-                  : participant.isActive
-                    ? 'Desativar'
-                    : 'Ativar'}
-              </button>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className="participant-toggle"
+                  disabled={updatingId === participant.id}
+                  onClick={() => void handleToggle(participant)}
+                >
+                  {updatingId === participant.id
+                    ? 'Salvando...'
+                    : participant.isActive
+                      ? 'Desativar'
+                      : 'Ativar'}
+                </button>
+                <button
+                  type="button"
+                  className="participant-toggle"
+                  style={{ background: '#fff', color: '#b53220', border: '1px solid #b53220' }}
+                  disabled={updatingId === participant.id}
+                  onClick={() => void handleRemove(participant)}
+                >
+                  Excluir
+                </button>
+              </div>
             </div>
           ))}
         </div>

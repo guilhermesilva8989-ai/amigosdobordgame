@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -45,6 +46,16 @@ export class ParticipantsController {
   @ApiOkResponse({ description: 'Listagem administrativa.' })
   findAll() {
     return this.participantsService.findAllAdmin();
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Exclui participante sem movimentações' })
+  @ApiOkResponse({ description: 'Participante excluído.' })
+  remove(
+    @Param('id') id: string,
+    @Req() request: AuthenticatedRequest,
+  ) {
+    return this.participantsService.remove(id, request.admin.id);
   }
 
   @Patch(':id')

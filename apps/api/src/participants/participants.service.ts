@@ -61,6 +61,46 @@ export class ParticipantsService {
     return participant;
   }
 
+  async remove(id: string, adminId: string) {
+    return this.prisma.$transaction(async (tx) => {
+      const participant = await tx.participant.findUnique({
+        where: { id },
+        select: {
+          id: true,
+          name: true,
+          publicCode: true,
+          _count: { select: { transactions: true } },
+        },
+      });
+
+      if (!participant) {
+        throw new NotFoundException('Participante não encontrado.');
+      }
+
+      if (participant._count.transactions > 0) {
+        throw new ConflictException(
+          'Este participante possui movimentações. Desative o cadastro para preservar o histórico financeiro.',
+        );
+      }
+
+      await tx.participant.delete({ where: { id } });
+      await tx.auditLog.create({
+        data: {
+          action: 'DELETE',
+          entity: 'Participant',
+          entityId: id,
+          createdById: adminId,
+          details: {
+            name: participant.name,
+            publicCode: participant.publicCode,
+          },
+        },
+      });
+
+      return { message: 'Participante excluído com sucesso.' };
+    });
+  }
+
   findAllAdmin() {
     return this.prisma.participant.findMany({
       orderBy: { createdAt: 'asc' },
