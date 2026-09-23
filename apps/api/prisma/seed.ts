@@ -28,12 +28,22 @@ async function main(): Promise<void> {
   const passwordHash = await hash(password);
 
   try {
+    const existing = await prisma.admin.findUnique({
+      where: { email },
+      select: { deletedAt: true },
+    });
+
+    if (existing?.deletedAt) {
+      throw new Error('Este e-mail pertence a uma conta removida. Use outro e-mail.');
+    }
+
     const admin = await prisma.admin.upsert({
       where: { email },
       update: {
         name,
         passwordHash,
         isActive: true,
+        deletedAt: null,
       },
       create: {
         name,

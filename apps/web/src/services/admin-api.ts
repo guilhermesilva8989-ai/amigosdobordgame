@@ -1,5 +1,7 @@
 import type {
   AdminFinancialGoal,
+  ManagedAdmin,
+  CreateAdminInput,
   AdminParticipant,
   AdminSiteSettings,
   AdminTransaction,
@@ -79,6 +81,22 @@ async function authorizedRequest<T>(
 export function listAdminParticipants() {
   return authorizedRequest<AdminParticipant[]>(
     '/admin/participants',
+  );
+}
+
+export function listManagedAdmins() {
+  return authorizedRequest<ManagedAdmin[]>('/admin/admins');
+}
+
+export function createManagedAdmin(input: CreateAdminInput) {
+  return authorizedRequest<ManagedAdmin>('/admin/admins', {
+    method: 'POST', body: JSON.stringify(input),
+  });
+}
+
+export function removeManagedAdmin(id: string) {
+  return authorizedRequest<{ message: string }>(
+    `/admin/admins/${encodeURIComponent(id)}`, { method: 'DELETE' },
   );
 }
 

@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import App from '../App';
 import { AdminDashboardPage } from '../pages/AdminDashboardPage';
+import { AdminAccountsPage } from '../pages/AdminAccountsPage';
 import { AdminExpensesPage } from '../pages/AdminExpensesPage';
 import { AdminFinancialGoalPage } from '../pages/AdminFinancialGoalPage';
 import { AdminLoginPage } from '../pages/AdminLoginPage';
@@ -29,6 +30,7 @@ export function AppRoutes() {
         path="/admin/participants"
         element={<AdminParticipantsPage />}
       />
+      <Route path="/admin/accounts" element={<AdminAccountsPage />} />
       <Route
         path="/admin/transactions"
         element={<AdminTransactionsPage />}

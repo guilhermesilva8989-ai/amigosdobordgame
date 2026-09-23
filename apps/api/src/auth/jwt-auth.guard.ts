@@ -43,6 +43,7 @@ export class JwtAuthGuard implements CanActivate {
           id: payload.sub,
           email: payload.email,
           isActive: true,
+          deletedAt: null,
         },
         select: {
           id: true,

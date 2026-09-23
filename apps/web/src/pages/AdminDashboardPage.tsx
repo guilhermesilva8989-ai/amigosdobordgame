@@ -6,6 +6,7 @@ import {
   ReceiptText,
   Settings2,
   Users,
+  ShieldCheck,
   WalletCards,
 } from 'lucide-react';
 import {
@@ -75,6 +76,14 @@ export function AdminDashboardPage() {
         </div>
 
         <div className="admin-action-grid">
+          <article>
+            <ShieldCheck size={25} />
+            <h2>Administradores</h2>
+            <p>Crie contas e remova o acesso de administradores.</p>
+            <Link className="admin-action-button" to="/admin/accounts">
+              Gerenciar administradores
+            </Link>
+          </article>
           <article>
             <Users size={25} />
             <h2>Participantes</h2>

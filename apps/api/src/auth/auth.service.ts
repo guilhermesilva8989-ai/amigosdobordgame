@@ -19,7 +19,7 @@ export class AuthService {
     });
 
     const validPassword =
-      admin?.isActive === true &&
+      admin?.isActive === true && admin.deletedAt === null &&
       (await verify(admin.passwordHash, loginDto.password));
 
     if (!admin || !validPassword) {

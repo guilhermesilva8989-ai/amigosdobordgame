@@ -8,6 +8,21 @@ export interface AdminParticipant {
   updatedAt: string;
 }
 
+export interface ManagedAdmin {
+  id: string;
+  name: string;
+  email: string;
+  isActive: boolean;
+  createdAt: string;
+  lastLoginAt: string | null;
+}
+
+export interface CreateAdminInput {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface CreateParticipantInput {
   name: string;
 }
